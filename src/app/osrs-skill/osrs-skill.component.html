@@ -1,0 +1,49 @@
+<h1>Skills</h1>
+
+<div class="input-group mb-3" style="width: 500px">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="inputGroup-sizing-default">In-game name</span>
+    </div>
+    <input type="text" id="username" name="username" #username class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+    <button type="button" class="btn btn-primary" style="border-top-left-radius: 0; border-bottom-left-radius: 0" (click)="getSkills(username.value)">Search player</button>
+  </div>
+
+
+
+<div class="row" style="width: 90%;">
+    <div class="column">
+        <table class="table table-responsive table-condensed table-borderless">
+            <th>Name</th><th>Rank</th><th>Level</th><th>Experience</th>
+            <tr *ngFor="let skill of highscores.skills | slice:0:12; let i=index">
+                <td><img src="./assets/OSRS skill icons/{{skill.name}}_icon.png" style="width: 50%; height: 50%;"></td>
+                <td>{{skill.rank}}</td>
+                <td>{{skill.level}}</td>
+                <td>{{skill.experience}}</td>
+            </tr>  
+        </table>
+    </div>
+    <div class="column">
+        <table class="table table-responsive table-condensed table-borderless">
+            <th>Name</th><th>Rank</th><th>Level</th><th>Experience</th>
+            <tr *ngFor="let skill of highscores.skills | slice:12:23; let i=index">
+                <td><img src="./assets/OSRS skill icons/{{skill.name}}_icon.png" style="width: 50%; height: 50%;"></td>
+                <td>{{skill.rank}}</td>
+                <td>{{skill.level}}</td>
+                <td>{{skill.experience}}</td>
+            </tr>  
+        </table>
+    </div>
+</div>
+
+<!-- <h1>Activities</h1>
+<table class="table table-responsive table-condensed table-borderless">
+    <th>Name</th><th>Rank</th><th>Level</th>
+    <tr *ngFor="let activity of highscores.activities">
+        <td>{{activity.name}}</td>
+        <td>{{activity.rank}}</td>
+        <td>{{activity.level}}</td>
+    </tr>
+</table> -->
+
+
+    

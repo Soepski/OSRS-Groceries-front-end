@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+.table-condensed{
+    font-size: 14px;
+  }
+  
+  /* Clearfix (clear floats) */
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+    width: 90%;
+  }
+  
+  
+  th, td {
+    text-align: left;
+    padding: 16px;
+  }
+
+  body{
+      padding-left: 20px;
+  }
