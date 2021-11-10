@@ -5,4 +5,5 @@ COPY package.json /app
 RUN npm install
 COPY . /app
 RUN npm run build --prod
-EXPOSE 80 443
+RUN chmod +X /app/entrypoint.sh
+ENTRYPOINT ["/app/entrypoint.sh"]
