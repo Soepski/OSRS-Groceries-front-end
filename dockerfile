@@ -20,6 +20,8 @@ COPY . /app
 
 RUN npm run build --prod
 
+EXPOSE 4200
+
 # Stage 2
 
 # FROM nginx:1.17.1-alpine
