@@ -1,16 +1,9 @@
-# Stage 1: Compile and Build angular codebase
-
-# Use official node image as the base image
-FROM node:latest as build
-
-# Set the working directory
-WORKDIR /usr/local/app
-
-# Add the source code to app
-COPY ./ /usr/local/app/
-
-# Install all the dependencies
+FROM node:14.17.6-alpine as build-step
+RUN mkdir -p /app
+WORKDIR /app
+COPY package.json /app
 RUN npm install
+<<<<<<< HEAD
 
 # Generate the build of the application
 RUN npm run build
@@ -26,3 +19,9 @@ COPY --from=build /usr/local/app/dist/OSRS-Groceries /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80
+=======
+COPY . /app
+RUN npm run build --prod
+RUN chmod +X /app/entrypoint.sh
+ENTRYPOINT ["/app/entrypoint.sh"]
+>>>>>>> parent of 7493d24 (Update dockerfile)
