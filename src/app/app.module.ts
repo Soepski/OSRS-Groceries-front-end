@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { OsrsSkillComponent } from './osrs-skill/osrs-skill.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     OsrsSkillComponent,
-    NavbarComponent
+    NavbarComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
