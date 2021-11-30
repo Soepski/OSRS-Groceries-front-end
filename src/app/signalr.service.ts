@@ -8,6 +8,7 @@ export class SignalrService {
         ) { }
 
     someText:string = "";
+
     hubConnection?:signalR.HubConnection;
 
     startConnection = () => {
@@ -28,13 +29,14 @@ export class SignalrService {
 
 
     askServer() {
-        this.hubConnection?.invoke("askServer", "hi")
+        this.hubConnection?.invoke("askServer", "hey")
             .catch(err => console.error(err));
     }
     
-    public askServerListener(){
+    async askServerListener(){
         this.hubConnection?.on("askServerResponse", (someText) => {
-            console.log(someText)           
+            console.log(someText);   
         })
     }
+
 }

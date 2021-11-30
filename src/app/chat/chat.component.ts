@@ -19,7 +19,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.signalrService.startConnection();
 
     setTimeout(() => {
-      this.signalrService.askServerListener();
+      this.signalrService.askServerListener()
       this.signalrService.askServer();
     }, 2000);
   }

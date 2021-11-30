@@ -1,0 +1,10 @@
+<h2>Groceries</h2>
+
+<div class="input-group mb-3" style="width: 500px; padding-left: 18px">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="inputGroup-sizing-default">Item name</span>
+    </div>
+    <input type="text" id="item" name="item" #item class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+    <button type="button" class="btn btn-primary" style="border-top-left-radius: 0; border-bottom-left-radius: 0" (click)="getItem(item.value)">Search item</button>
+  </div>
+
