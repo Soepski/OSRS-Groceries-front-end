@@ -18,7 +18,7 @@ export class OsrsSkillComponent implements OnInit {
 
   data: any;
 
-  constructor(private http: HttpClient, private skillService: SkillService) { }
+  constructor(private skillService: SkillService) { }
 
   ngOnInit(): void {
     this.getSkills(this.player);

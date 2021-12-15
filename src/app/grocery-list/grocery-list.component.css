@@ -1,0 +1,21 @@
+.itemdiv{
+    border: 2px solid lightgray;
+    border-radius: 10px;
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+    margin-left: 40px;
+    
+}
+
+h2{
+    padding-left: 20px;
+}
+
+.items{
+    float: left;
+}
+
+.groceries{
+    overflow: hidden;
+}
