@@ -31,6 +31,8 @@ export class GroceryListComponent implements OnInit {
 
   addNewItem(itemName: string, itemRSID: string){
     parseInt(itemRSID);
+    this.itemService.createItem(itemName, parseInt(itemRSID));
+    console.log("biem");
   }
 
 }

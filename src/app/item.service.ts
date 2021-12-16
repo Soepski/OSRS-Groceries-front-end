@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Item } from './Models/item';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,8 +15,26 @@ export class ItemService {
 
   private itemUrl = this.baseUrl + "item/all"
 
-  getItems(): Observable<Item[]>
+  private createUrl = this.baseUrl + "item/create"
+
+
+  public getItems(): Observable<Item[]>
   {
     return this.http.get<Item[]>(this.itemUrl);
   }
+
+  public createItem(name: string, rsid: number): Observable<Item>
+  {
+    let id: number = 0;
+    let item: Item = {id, name, rsid};
+
+    console.log(this.createUrl, item);
+
+    
+
+    return this.http.post<Item>(this.createUrl, item);
+
+    
+  }
+
 }
