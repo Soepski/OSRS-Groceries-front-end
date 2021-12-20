@@ -5,14 +5,12 @@
   <div class="form-group">
     <div class="row" style="width: 1000px">
       <div class="itemdiv col-3" *ngFor="let item of items; let index = index">
-        {{item.id}}
-        <hr/>
         {{item.name}}
         <hr/>
-        {{item.rsid}}
+        <img src="https://www.runescape.com/img/rsp777/grand_exchange/coin.png"> {{item.geinfo.current.price}}
         <hr/>
-        <button class="btn btn-danger" style="margin-right: 20px;">Delete</button>
-        <button class="btn btn-success" (click)="addItem(item)">+</button>
+        <button class="btn btn-danger" (click)="deleteItem(item)" style="margin-right: 20px;">Delete</button>
+        <button class="btn btn-primary" (click)="addItemToList(item)">Add to cart</button>
       </div>
       <div class="itemdiv col-3">
         Add new item
@@ -34,8 +32,26 @@
   <h2>Groceries</h2>
   <ul>
     <li *ngFor="let item of groceryList;">
-      {{item.name}}
+      <div class="row">
+        <div class="col-sm">
+          {{item.name}}
+        </div>
+        <div style="text-align: right; padding-right: 100px;" class="col-sm">
+          <img src="https://www.runescape.com/img/rsp777/grand_exchange/coin.png"> {{item.geinfo.current.price}}
+        </div>
+      </div>
       <hr/>
+    </li>
+    <li>
+      <div style="font-weight: bold;" class="row">
+        <div class="col-sm">
+          Total:
+        </div>
+        <div style="text-align: right; padding-right: 100px;" class="col-sm">
+          <img src="https://www.runescape.com/img/rsp777/grand_exchange/coin.png"> {{getTotalPrice()}}m
+        </div>
+      </div>
+
     </li>
   </ul>
 </div>

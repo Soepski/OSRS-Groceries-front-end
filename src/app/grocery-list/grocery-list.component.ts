@@ -12,7 +12,11 @@ export class GroceryListComponent implements OnInit {
 
   groceryList: Item[] = [];
 
+  totalPrice: number = 0;
+
   items?: Item[];
+
+  item : Item = {} as Item;
 
   constructor(private http: HttpClient, private itemService: ItemService) { }
 
@@ -21,18 +25,67 @@ export class GroceryListComponent implements OnInit {
   }
 
   getItems(): void {
-    this.itemService.getItems()
-      .subscribe(items => this.items = items);
+    this.itemService.getItems().subscribe(
+      (items) => {
+        this.items = items 
+        console.log(this.items)
+      }
+    )
   }
 
-  addItem(item: Item){
-    this.groceryList.push(item);
+  getTotalPrice(): number{
+    return this.totalPrice;
   }
+
+  addItemToList(item: Item){
+    this.groceryList.push(item);
+
+    this.totalPrice = 0;
+
+    this.groceryList.forEach(element => {     
+
+
+
+      this.totalPrice += parseInt(element.geinfo.current.price)
+
+    });
+  }
+
 
   addNewItem(itemName: string, itemRSID: string){
-    parseInt(itemRSID);
-    this.itemService.createItem(itemName, parseInt(itemRSID));
-    console.log("biem");
+    
+    this.item.id = 0;
+    this.item.name = itemName;
+    this.item.rsid = parseInt(itemRSID);
+
+    this.itemService.createItem(this.item).subscribe(
+      (item) => {
+        this.item = item
+        console.log(item)
+        this.reloadCurrentPage()
+      }
+    )
   }
+
+  editItem(item: Item){
+
+  }
+
+  deleteItem(item: Item){
+    this.itemService.deleteItem(item)
+      .subscribe(
+        (item) => {
+          this.item = item
+          console.log(item)
+          this.reloadCurrentPage()
+        }
+      )     
+  }
+
+  reloadCurrentPage() {
+    setTimeout(() => window.location.reload(), 500);
+   }
+
+   
 
 }
