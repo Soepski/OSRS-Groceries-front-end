@@ -5,12 +5,13 @@
   <div class="form-group">
     <div class="row" style="width: 1000px">
       <div class="itemdiv col-3" *ngFor="let item of items; let index = index">
-        {{item.name}}
+        {{item.name}} <img src="{{item.geinfo.icon}}"/>
         <hr/>
-        <img src="https://www.runescape.com/img/rsp777/grand_exchange/coin.png"> {{item.geinfo.current.price}}
+        <img src="https://oldschool.runescape.wiki/images/Coins_10000.png?7fa38"> {{item.geinfo.current.price}}
         <hr/>
-        <button class="btn btn-danger" (click)="deleteItem(item)" style="margin-right: 20px;">Delete</button>
-        <button class="btn btn-primary" (click)="addItemToList(item)">Add to cart</button>
+        <button class="btn btn-sm btn-danger" (click)="deleteItem(item)" style="margin-right: 10px;">Delete</button>
+        <button class="btn-sm btn btn-warning" (click)="openModal(content, item)" style="margin-right: 10px;">Edit</button>
+        <button class="btn btn-sm btn-primary" (click)="addItemToList(item)">Add to cart</button>
       </div>
       <div class="itemdiv col-3">
         Add new item
@@ -34,10 +35,11 @@
     <li *ngFor="let item of groceryList;">
       <div class="row">
         <div class="col-sm">
-          {{item.name}}
+          {{item.name}} <img src="{{item.geinfo.icon}}"/>
         </div>
         <div style="text-align: right; padding-right: 100px;" class="col-sm">
-          <img src="https://www.runescape.com/img/rsp777/grand_exchange/coin.png"> {{item.geinfo.current.price}}
+          <img src="https://oldschool.runescape.wiki/images/Coins_10000.png?7fa38"> {{item.geinfo.current.price}}
+          <button class="btn btn-danger" (click)="deleteItemFromList(item)">X</button>
         </div>
       </div>
       <hr/>
@@ -47,11 +49,32 @@
         <div class="col-sm">
           Total:
         </div>
-        <div style="text-align: right; padding-right: 100px;" class="col-sm">
-          <img src="https://www.runescape.com/img/rsp777/grand_exchange/coin.png"> {{getTotalPrice()}}m
+        <div style="text-align: right; padding-right: 150px;" class="col-sm">
+          <img src="https://oldschool.runescape.wiki/images/Coins_10000.png?7fa38"> {{getTotalPrice()}}m
         </div>
       </div>
 
     </li>
   </ul>
 </div>
+
+<ng-template #content let-modal>
+	<div class="modal-header">
+	  <h4 class="modal-title" id="modal-basic-title">Edit item</h4>
+	</div>
+	<div class="modal-body">
+	  <form ngNativeValidate #userForm="ngForm">
+		<div class="form-group text-center" >
+		  <label>Name</label><br>
+		  <input required class="form-control" type="text" id="name" name="name" ngModel>
+		</div>
+		<div class="form-group text-center" >
+			<label>RSID</label><br>
+			<input required class="form-control" type="number" id="rsid" name="rsid" ngModel>
+		  </div>		  
+	  </form>
+	</div>
+	<div class="modal-footer">
+	  <button type="button" class="btn btn-outline-dark"  (click)="updateItems(userForm.value)" (click)="modal.close('Save click')">Save</button>
+	</div>
+  </ng-template>

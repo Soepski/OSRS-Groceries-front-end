@@ -10,10 +10,11 @@ import { Item } from './Models/item';
 export class ItemService {
 
   constructor(private http: HttpClient) { }
-  private readonly baseUrl = "https://localhost:44353/"
-  private itemUrl = this.baseUrl + "item/all"
-  private createUrl = this.baseUrl + "item/create"
-  private deleteUrl: string = this.baseUrl + 'item/delete/'
+  private readonly baseUrl = "https://localhost:44353/";
+  private itemUrl = this.baseUrl + "item/all";
+  private createUrl = this.baseUrl + "item/create";
+  private deleteUrl = this.baseUrl + 'item/delete/';
+  private updateUrl = this.baseUrl + 'item/update';
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'}),
   }
@@ -29,6 +30,10 @@ export class ItemService {
 
   public deleteItem(item: Item): Observable<Item>{
     return this.http.delete<Item>(this.deleteUrl + item.id, this.httpOptions)
+  }
+
+  public updateItem(item: Item): Observable<Item> {
+    return this.http.put<Item>(this.updateUrl, item, this.httpOptions)
   }
 
 }

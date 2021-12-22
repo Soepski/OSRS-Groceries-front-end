@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Item } from '../Models/item';
 import { ItemService } from '../item.service';
 import { HttpClient } from '@angular/common/http';
+import { NgbModal, ModalDismissReasons  } from '@ng-bootstrap/ng-bootstrap';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-grocery-list',
@@ -10,19 +12,21 @@ import { HttpClient } from '@angular/common/http';
 })
 export class GroceryListComponent implements OnInit {
 
+  @ViewChild('content')
+  private modalRef?: TemplateRef<any>;
+  public closeResult = '';
   groceryList: Item[] = [];
-
   totalPrice: number = 0;
-
   items?: Item[];
-
   item : Item = {} as Item;
+  updateItem : Item = {} as Item;
 
-  constructor(private http: HttpClient, private itemService: ItemService) { }
+  constructor(private modalService: NgbModal, private itemService: ItemService) { }
 
   ngOnInit(): void {
     this.getItems();
   }
+
 
   getItems(): void {
     this.itemService.getItems().subscribe(
@@ -51,6 +55,22 @@ export class GroceryListComponent implements OnInit {
     });
   }
 
+  deleteItemFromList(item: Item){
+    const index = this.groceryList.indexOf(item, 0);
+    if (index > -1) {
+      this.groceryList.splice(index, 1);
+    }
+
+    this.totalPrice = 0;
+
+    this.groceryList.forEach(element => {     
+
+
+
+      this.totalPrice += parseInt(element.geinfo.current.price)
+
+    });
+  }
 
   addNewItem(itemName: string, itemRSID: string){
     
@@ -67,9 +87,30 @@ export class GroceryListComponent implements OnInit {
     )
   }
 
-  editItem(item: Item){
-
+  updateItems(item: Item) {
+    this.updateItem.id = this.item.id
+    this.updateItem.name = item.name;
+    this.updateItem.rsid = item.rsid;
+    this.updateItem.geinfo = this.item.geinfo;
+    console.log(this.item);
+    console.log(this.updateItem);
+    this.itemService.updateItem(this.updateItem)
+    .subscribe(
+      (item) => {
+        this.updateItem = item
+        console.log(this.updateItem);
+        // this.reloadCurrentPage()
+      }
+    )
   }
+
+  openModal(content: any, item: Item) {
+    this.item = item;
+    console.log(item);
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'sm'});
+  }
+
+  
 
   deleteItem(item: Item){
     this.itemService.deleteItem(item)
