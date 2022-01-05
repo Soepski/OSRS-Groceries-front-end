@@ -4,6 +4,8 @@ import { ItemService } from '../item.service';
 import { HttpClient } from '@angular/common/http';
 import { NgbModal, ModalDismissReasons  } from '@ng-bootstrap/ng-bootstrap';
 import { HttpHeaders } from '@angular/common/http';
+import { User } from '../Models/user';
+import { GroceriesService } from '../groceries.service';
 
 @Component({
   selector: 'app-grocery-list',
@@ -20,8 +22,9 @@ export class GroceryListComponent implements OnInit {
   items?: Item[];
   item : Item = {} as Item;
   updateItem : Item = {} as Item;
+  user: User = {} as User;
 
-  constructor(private modalService: NgbModal, private itemService: ItemService) { }
+  constructor(private modalService: NgbModal, private itemService: ItemService, private groceriesService: GroceriesService) { }
 
   ngOnInit(): void {
     this.getItems();
@@ -100,6 +103,19 @@ export class GroceryListComponent implements OnInit {
         this.updateItem = item
         console.log(this.updateItem);
         // this.reloadCurrentPage()
+      }
+    )
+  }
+
+  createGroceries(list: Item[]){
+    this.user.id = 1;
+    this.user.name = "Ron Liebregts";
+
+    this.groceriesService.createGroceries(this.user, list)
+    .subscribe(
+      (items) => {
+        this.items = items 
+        console.log(this.items)
       }
     )
   }
