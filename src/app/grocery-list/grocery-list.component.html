@@ -57,6 +57,8 @@
     </li>
   </ul>
   <button class="btn btn-sm btn-primary" style="margin: 10px" (click)="createGroceries(groceryList)">Save list</button>
+  <button class="btn btn-sm btn-primary" style="margin: 10px" (click)="getGroceries()">Get all</button>
+  <button class="btn btn-sm btn-primary" style="margin: 10px" (click)="getGroceriesById(1)">Get by id: 1</button>
 </div>
 
 <ng-template #content let-modal>

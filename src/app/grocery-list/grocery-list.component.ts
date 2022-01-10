@@ -22,7 +22,8 @@ export class GroceryListComponent implements OnInit {
   items?: Item[];
   item : Item = {} as Item;
   updateItem : Item = {} as Item;
-  user: User = {} as User;
+  user?: User;
+  id?: Number;
 
   constructor(private modalService: NgbModal, private itemService: ItemService, private groceriesService: GroceriesService) { }
 
@@ -35,7 +36,6 @@ export class GroceryListComponent implements OnInit {
     this.itemService.getItems().subscribe(
       (items) => {
         this.items = items 
-        console.log(this.items)
       }
     )
   }
@@ -50,8 +50,6 @@ export class GroceryListComponent implements OnInit {
     this.totalPrice = 0;
 
     this.groceryList.forEach(element => {     
-
-
 
       this.totalPrice += parseInt(element.geinfo.current.price)
 
@@ -108,14 +106,32 @@ export class GroceryListComponent implements OnInit {
   }
 
   createGroceries(list: Item[]){
-    this.user.id = 1;
-    this.user.name = "Ron Liebregts";
+    this.user = {id: 1, name: "Ron Liebergts"} as User
 
     this.groceriesService.createGroceries(this.user, list)
     .subscribe(
       (items) => {
-        this.items = items 
-        console.log(this.items)
+        this.groceryList = items 
+      }
+    )
+  }
+
+  getGroceries(): void{
+
+    this.groceriesService.getGroceries()
+    .subscribe(
+      (items) => {
+        this.groceryList = items 
+      }
+    )
+  }
+
+  getGroceriesById(id: number): void{
+
+    this.groceriesService.getGroceriesById(id)
+    .subscribe(
+      (items) => {
+        this.groceryList = items 
       }
     )
   }
