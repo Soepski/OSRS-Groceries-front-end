@@ -6,6 +6,7 @@
 
 
 .text-center {
+    margin-top: 10px;
     text-align: center;
 }
 
@@ -13,14 +14,15 @@ h2 {
     margin: 0;
 }
 
+
 .msg-italic-style {
-    font-style: italic;
-    font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 18px;
 }
 
 
 // body
+
+
 .ud-body {
     position: fixed;
     top: 0; bottom: 0;
@@ -35,28 +37,41 @@ h2 {
         width: 100%;
         height: calc(100% - 140px); 
         margin-top: 20px;
-        border: 2px solid #191D32;
         border-radius: .5em;
         padding: 10px 30px;
         font-size: 14px;
+        border: 2px solid lightgray;
+        text-align: center;
 
         overflow: auto;
 
         ul {
             list-style: none;
 
+            
+
             .ex-msg {
                 margin-bottom: 10px;
-                color: #459c1a;
+                color: Black;
 
                 text-align: left;
+
+                border: 2px solid lightskyblue;
+                background-color: lightskyblue;
+                border-radius: .5em;
+                width: 100%;
             }
 
             .in-msg {
                 margin-bottom: 10px;
-                color: #DD1155;
+                color: Black;
  
                 text-align: right;
+
+                border: 2px solid lightgreen;
+                background-color: lightgreen;
+                border-radius: .5em;
+                width: 100%;
             }
         }
         
@@ -78,31 +93,27 @@ h2 {
             border: 0px solid rgba(0, 0, 0, 0);
             padding: 10px;
             flex: 1 1 0;
-            border: 1.5px solid #DD1155;
+            border: 1.5px solid rgb(67, 67, 255);
         }
 
         .msg-input:focus {
             outline: none;
-            border-color: #DD1155;
-            box-shadow: 0 0 5px #DD1155;
+            border-color: blue;
+            box-shadow: 0 0 5px rgb(67, 67, 255);
         }
 
         .send-btn {
             height: 100%;
             width: 100px;
             border-radius: .3em;
-            background-color: #DD1155;
             margin-left: 20px;
             border: 0px solid rgba(0, 0, 0, 0);
             font-size: 25px;
-            color: #FDFFFF;
             position: relative;
         }
 
         .send-btn:focus {
             outline: none;
-            border-color: #DD1155;
-            box-shadow: 0 0 5px #DD1155;
         }
 
         
@@ -137,7 +148,7 @@ h2 {
         border: 0px solid rgba(0, 0, 0, 0);
         padding: 10px;
         font-size: 15px;
-        border: 1px solid #b423d1;
+        border: 1px solid green;
     }
 
     .name-box:focus {

@@ -10,6 +10,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ChatComponent } from './chat/chat.component';
 import { GroceryListComponent } from './grocery-list/grocery-list.component';
 import { FormsModule } from '@angular/forms';
+import { ChatPopUpComponent } from './chat-pop-up/chat-pop-up.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     OsrsSkillComponent,
     NavbarComponent,
     ChatComponent,
-    GroceryListComponent
+    GroceryListComponent,
+    ChatPopUpComponent
   ],
   imports: [
     BrowserModule,
