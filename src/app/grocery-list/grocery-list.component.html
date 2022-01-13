@@ -16,9 +16,9 @@
       <div class="itemdiv col-3">
         Add new item
         <hr/>
-        <input style="width: 100%" placeholder="Item name" #itemname type="text">
+        <input style="width: 100%" placeholder="Item name" #itemname name="itemname" type="text">
         <hr/>
-        <input style="width: 100%" placeholder="Item RSID" #itemid type="number">
+        <input style="width: 100%" placeholder="Item RSID" #itemid name="itemrsid" type="number">
         <hr/>
         <button class="btn btn-success" (click)="addNewItem(itemname.value, itemid.value)">+</button>
       </div>

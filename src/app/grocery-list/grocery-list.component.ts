@@ -122,6 +122,8 @@ export class GroceryListComponent implements OnInit {
     .subscribe(
       (items) => {
         this.groceryList = items 
+
+        
       }
     )
   }
@@ -132,6 +134,10 @@ export class GroceryListComponent implements OnInit {
     .subscribe(
       (items) => {
         this.groceryList = items 
+        this.totalPrice = 0;
+        this.groceryList.forEach(element => {     
+        this.totalPrice += parseInt(element.geinfo.current.price)
+        });
       }
     )
   }
